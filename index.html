@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container-fluid bg-info shadow text-light">
+        <h1 class="container-fluid pb-4 pt-4 mb-0 text-center">Toodoo</h1>
+      </div>
+    </header>
+    <main>
+      <div id="app">
+        <div class="bg-info-subtle">
+          <form
+            @submit.prevent="noRefresh()"
+            class="container col-3 pt-5 pb-5 d-flex flex-column justify-content-center"
+          >
+            <input
+              type="text"
+              placeholder="Titre..."
+              v-model="title"
+              class="input-group-text row mb-1"
+              id="title"
+            />
+            <input
+              type="text"
+              placeholder="Description..."
+              v-model="desc"
+              class="input-group-text row mb-3"
+              id="desc"
+            />
+            <button type="submit" class="btn btn-info row" @click="add_task">
+              Ajouter
+            </button>
+            <button class="btn btn-danger mt-3" @click="remove_all_tasks()">
+              Supprimer toutes les tâches
+            </button>
+            <button class="btn btn-warning mt-1" @click="remove_done_tasks()">
+              Supprimer toutes les tâches complétées
+            </button>
+          </form>
+        </div>
+
+        <div id="list">
+          <ul>
+            <li
+              :id="index"
+              v-for="(task, index) in tasks"
+              :key="index"
+              class="container list-group-item mt-5 d-flex"
+            >
+              <div class="me-3">
+                <input
+                  type="checkbox"
+                  class="mt-2"
+                  @click="task_state"
+                  :class="[task.statut ? 'btn-succes' : 'btn-danger barre']"
+                />
+              </div>
+              <div>
+                <p class="title">{{ task.title }}</p>
+                <p class="desc">{{ task.desc }}</p>
+              </div>
+              <div>
+                <button class="btn btn-danger ms-3" @click="remove_task()">
+                  Supprimer
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="/assets/js/app.js"></script>
+  </body>
+</html>

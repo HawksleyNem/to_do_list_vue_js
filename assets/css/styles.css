@@ -1,0 +1,12 @@
+h1 {
+    font-family: cursive;
+}
+
+.barre {
+    text-decoration : line-through;
+}
+
+.title {
+    font-size: 2em;
+    font-family: cursive;
+}
